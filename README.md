@@ -28,6 +28,7 @@ The system uses an on-board Raspberry Pi 5 integrated with a camera and the YOLO
 ---
 
 ## System Architecture
+
 ```mermaid
 flowchart TD
     A[Camera Module] --> B[YOLOv8n Object Detection]
@@ -35,4 +36,5 @@ flowchart TD
     B --> D[Context Analysis via Phi-2 LLM]
     C --> D
     D --> E[Speech Synthesis Output]
-    E --> F[User (Audio Feedback)]
+    E --> F[User Audio Feedback]
+
