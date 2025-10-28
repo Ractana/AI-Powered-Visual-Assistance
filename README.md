@@ -64,6 +64,15 @@ flowchart TD
 
 ---
 
+## Sample Output
+
+The following screenshot shows a sample interaction with the AI-powered visual assistant **“Drishti Mithra”**.  
+It demonstrates the end-to-end workflow — from **speech detection** to **object recognition**, **spatial relationship inference**, **scene narration**, and **audio feedback generation** on the Raspberry Pi 5.
+
+![Sample Output](Output.png)
+
+---
+
 ## Future Enhancements
 - Add multilingual speech output for regional accessibility.  
 - Integrate GPS and ultrasonic sensors for navigation guidance.  
