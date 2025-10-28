@@ -39,3 +39,53 @@ flowchart TD
     D --> E[Phi-2 LLM for Scene Description]
     E --> F[Text-to-Speech Conversion via espeak]
     F --> G[User Audio Feedback through Headset]
+```
+
+---
+
+## Results
+
+| Metric | Description | Value |
+|---------|--------------|--------|
+| **Precision** | Accuracy of object detection (YOLOv8s) | 79.66 % |
+| **Recall** | Correctly identified objects out of total | 66.39 % |
+| **ROUGE-L Score** | Quality of generated scene descriptions | 72.9 % |
+| **BLEU Score** | Linguistic fluency of generated text | 11.6 % |
+| **Mean Opinion Score (MOS)** | Audio output clarity from eSpeak | 3.78 / 5 (~75.6 %) |
+| **Processing Latency** | Average time per complete pipeline | ~1 minute |
+| **Offline Capability** | Works without internet connectivity | Enabled |
+| **Battery Runtime** | Continuous operation on portable pack | ~2.5 hours |
+
+**Testing Summary**
+- Deployed on Raspberry Pi 5 and evaluated in both indoor and outdoor environments.  
+- Maintained consistent detection accuracy under varied lighting conditions.  
+- Real-time narration improved navigation confidence for visually impaired users.  
+- Achieved stable, low-latency performance with full offline operation.
+
+---
+
+## Future Enhancements
+- Add multilingual speech output for regional accessibility.  
+- Integrate GPS and ultrasonic sensors for navigation guidance.  
+- Extend functionality with OCR and face-recognition modules.  
+- Develop a companion mobile application for remote monitoring and settings.  
+- Optimize power consumption for extended wearable use.  
+- Incorporate haptic feedback for silent or low-noise alerts.  
+- Redesign the hardware enclosure for improved ergonomics and comfort.  
+
+---
+
+## Team and Role
+
+This project was developed as part of a 3-member team at Sri Sivasubramaniya Nadar College of Engineering, Chennai.  
+I was primarily responsible for the **AI model integration, scene understanding logic, and system interface design**, ensuring smooth coordination between object detection, language generation, and voice feedback modules.  
+
+Other team members contributed to **hardware configuration, camera integration, speech processing**, and **system testing**.  
+Collaboration was managed using Git and version control to streamline development and testing cycles.
+
+**Team Size:** 3  
+**Duration:** January 2025 – April 2025  
+**Institution:** Sri Sivasubramaniya Nadar College of Engineering, Chennai
+
+
+---
