@@ -1,14 +1,17 @@
 # For simplicity, all modules (speech, detection, OCR, control) are implemented here.
 # In a production version, these can be modularized into separate scripts.
+# Import required libraries
 import cv2, time, requests, numpy as np, pyttsx3, pytesseract, sounddevice as sd, vosk, json
 from ultralytics import YOLO
 
+# Convert text to speech
 def speak(text):
     engine = pyttsx3.init()
     engine.setProperty('rate', 150)
     engine.say(text)
     engine.runAndWait()
 
+# Capture a single command using microphone and Vosk STT
 def listen(model_path='vosk-model-small-en-us-0.15', duration=4):
     model = vosk.Model(model_path)
     rec = vosk.KaldiRecognizer(model, 16000)
@@ -16,20 +19,17 @@ def listen(model_path='vosk-model-small-en-us-0.15', duration=4):
         rec.AcceptWaveform(indata.tobytes())
     with sd.RawInputStream(samplerate=16000, blocksize=8000, dtype='int16', channels=1, callback=callback):
         sd.sleep(int(duration * 1000))
-    try:
-        res = json.loads(rec.FinalResult())
-        return res.get('text', '').lower().strip()
-    except:
-        return ''
+    res = json.loads(rec.FinalResult())
+    return res.get('text', '').lower().strip()
 
+# Capture image from webcam
 def capture_image():
     cap = cv2.VideoCapture(0)
     ret, frame = cap.read()
     cap.release()
-    if ret:
-        return frame
-    return None
+    return frame if ret else None
 
+# Perform object detection using YOLOv8
 def detect_objects(frame, model):
     results = model.predict(source=frame, conf=0.3, verbose=False)
     detections = []
@@ -42,12 +42,14 @@ def detect_objects(frame, model):
             detections.append({'label': label, 'conf': conf, 'bbox': xyxy})
     return detections
 
+# Generate a simple spoken description of detected objects
 def describe(detections):
     if not detections:
         return "No objects detected."
     labels = [d['label'] for d in detections]
     return "Detected objects are: " + ", ".join(labels)
 
+# Main execution flow
 def main():
     model = YOLO('yolov8n.pt')
     vosk_model = 'vosk-model-small-en-us-0.15'
@@ -76,3 +78,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
